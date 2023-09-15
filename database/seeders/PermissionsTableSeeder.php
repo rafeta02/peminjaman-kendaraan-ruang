@@ -208,99 +208,99 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 50,
-                'title' => 'log_peminjaman_show',
-            ],
-            [
-                'id'    => 51,
-                'title' => 'log_peminjaman_access',
-            ],
-            [
-                'id'    => 52,
                 'title' => 'lantai_create',
             ],
             [
-                'id'    => 53,
+                'id'    => 51,
                 'title' => 'lantai_edit',
             ],
             [
-                'id'    => 54,
+                'id'    => 52,
                 'title' => 'lantai_show',
             ],
             [
-                'id'    => 55,
+                'id'    => 53,
                 'title' => 'lantai_delete',
             ],
             [
-                'id'    => 56,
+                'id'    => 54,
                 'title' => 'lantai_access',
             ],
             [
-                'id'    => 57,
+                'id'    => 55,
                 'title' => 'ruang_create',
             ],
             [
-                'id'    => 58,
+                'id'    => 56,
                 'title' => 'ruang_edit',
             ],
             [
-                'id'    => 59,
+                'id'    => 57,
                 'title' => 'ruang_show',
             ],
             [
-                'id'    => 60,
+                'id'    => 58,
                 'title' => 'ruang_delete',
             ],
             [
-                'id'    => 61,
+                'id'    => 59,
                 'title' => 'ruang_access',
             ],
             [
-                'id'    => 62,
+                'id'    => 60,
                 'title' => 'pinjam_ruang_create',
             ],
             [
-                'id'    => 63,
+                'id'    => 61,
                 'title' => 'pinjam_ruang_edit',
             ],
             [
-                'id'    => 64,
+                'id'    => 62,
                 'title' => 'pinjam_ruang_show',
             ],
             [
-                'id'    => 65,
+                'id'    => 63,
                 'title' => 'pinjam_ruang_delete',
             ],
             [
-                'id'    => 66,
+                'id'    => 64,
                 'title' => 'pinjam_ruang_access',
             ],
             [
-                'id'    => 67,
+                'id'    => 65,
                 'title' => 'log_pinjam_ruangan_show',
             ],
             [
-                'id'    => 68,
+                'id'    => 66,
                 'title' => 'log_pinjam_ruangan_access',
             ],
             [
-                'id'    => 69,
+                'id'    => 67,
                 'title' => 'pinjam_kendaraan_create',
             ],
             [
-                'id'    => 70,
+                'id'    => 68,
                 'title' => 'pinjam_kendaraan_edit',
             ],
             [
-                'id'    => 71,
+                'id'    => 69,
                 'title' => 'pinjam_kendaraan_show',
             ],
             [
-                'id'    => 72,
+                'id'    => 70,
                 'title' => 'pinjam_kendaraan_delete',
             ],
             [
-                'id'    => 73,
+                'id'    => 71,
                 'title' => 'pinjam_kendaraan_access',
+            ],
+            [
+                'id'    => 72,
+                'title' => 'log_pinjam_kendaraan_show',
+            ],
+            [
+                'id'    => 73,
+                'title' => 'log_pinjam_kendaraan_access',
             ],
             [
                 'id'    => 74,

@@ -28,6 +28,14 @@
                                 </tr>
                                 <tr>
                                     <th>
+                                        {{ trans('cruds.kendaraan.fields.slug') }}
+                                    </th>
+                                    <td>
+                                        {{ $kendaraan->slug }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
                                         {{ trans('cruds.kendaraan.fields.merk') }}
                                     </th>
                                     <td>

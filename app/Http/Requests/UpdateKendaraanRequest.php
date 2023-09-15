@@ -21,6 +21,10 @@ class UpdateKendaraanRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'slug' => [
+                'string',
+                'nullable',
+            ],
             'merk' => [
                 'string',
                 'required',

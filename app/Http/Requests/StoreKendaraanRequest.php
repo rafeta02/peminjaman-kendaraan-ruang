@@ -21,6 +21,10 @@ class StoreKendaraanRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'slug' => [
+                'string',
+                'nullable',
+            ],
             'merk' => [
                 'string',
                 'required',

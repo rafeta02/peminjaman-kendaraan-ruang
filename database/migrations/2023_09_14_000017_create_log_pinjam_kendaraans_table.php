@@ -4,11 +4,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLogPeminjamenTable extends Migration
+class CreateLogPinjamKendaraansTable extends Migration
 {
     public function up()
     {
-        Schema::create('log_peminjamen', function (Blueprint $table) {
+        Schema::create('log_pinjam_kendaraans', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('jenis');
             $table->longText('log')->nullable();
