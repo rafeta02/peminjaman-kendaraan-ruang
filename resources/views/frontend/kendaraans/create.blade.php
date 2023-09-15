@@ -24,6 +24,16 @@
                             <span class="help-block">{{ trans('cruds.kendaraan.fields.plat_no_helper') }}</span>
                         </div>
                         <div class="form-group">
+                            <label for="slug">{{ trans('cruds.kendaraan.fields.slug') }}</label>
+                            <input class="form-control" type="text" name="slug" id="slug" value="{{ old('slug', '') }}">
+                            @if($errors->has('slug'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('slug') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.kendaraan.fields.slug_helper') }}</span>
+                        </div>
+                        <div class="form-group">
                             <label class="required" for="merk">{{ trans('cruds.kendaraan.fields.merk') }}</label>
                             <input class="form-control" type="text" name="merk" id="merk" value="{{ old('merk', '') }}" required>
                             @if($errors->has('merk'))

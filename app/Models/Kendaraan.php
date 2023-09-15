@@ -46,6 +46,7 @@ class Kendaraan extends Model implements HasMedia
 
     protected $fillable = [
         'plat_no',
+        'slug',
         'merk',
         'jenis',
         'kondisi',

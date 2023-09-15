@@ -93,7 +93,7 @@ class KendaraanController extends Controller
     {
         abort_if(Gate::denies('kendaraan_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $kendaraan->load('unit_kerja', 'owned_by', 'kendaraanPinjams');
+        $kendaraan->load('unit_kerja', 'owned_by', 'kendaraanPinjamKendaraans');
 
         return view('frontend.kendaraans.show', compact('kendaraan'));
     }

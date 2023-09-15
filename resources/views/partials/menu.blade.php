@@ -207,8 +207,8 @@
                     </li>
                 @endcan
                 @can('log_access')
-                    <li class="nav-item has-treeview {{ request()->is("admin/log-peminjamen*") ? "menu-open" : "" }} {{ request()->is("admin/log-pinjam-ruangans*") ? "menu-open" : "" }}">
-                        <a class="nav-link nav-dropdown-toggle {{ request()->is("admin/log-peminjamen*") ? "active" : "" }} {{ request()->is("admin/log-pinjam-ruangans*") ? "active" : "" }}" href="#">
+                    <li class="nav-item has-treeview {{ request()->is("admin/log-pinjam-kendaraans*") ? "menu-open" : "" }} {{ request()->is("admin/log-pinjam-ruangans*") ? "menu-open" : "" }}">
+                        <a class="nav-link nav-dropdown-toggle {{ request()->is("admin/log-pinjam-kendaraans*") ? "active" : "" }} {{ request()->is("admin/log-pinjam-ruangans*") ? "active" : "" }}" href="#">
                             <i class="fa-fw nav-icon fas fa-history">
 
                             </i>
@@ -218,14 +218,14 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            @can('log_peminjaman_access')
+                            @can('log_pinjam_kendaraan_access')
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.log-peminjamen.index") }}" class="nav-link {{ request()->is("admin/log-peminjamen") || request()->is("admin/log-peminjamen/*") ? "active" : "" }}">
+                                    <a href="{{ route("admin.log-pinjam-kendaraans.index") }}" class="nav-link {{ request()->is("admin/log-pinjam-kendaraans") || request()->is("admin/log-pinjam-kendaraans/*") ? "active" : "" }}">
                                         <i class="fa-fw nav-icon fas fa-cogs">
 
                                         </i>
                                         <p>
-                                            {{ trans('cruds.logPeminjaman.title') }}
+                                            {{ trans('cruds.logPinjamKendaraan.title') }}
                                         </p>
                                     </a>
                                 </li>

@@ -59,9 +59,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('kendaraans/process-csv-import', 'KendaraanController@processCsvImport')->name('kendaraans.processCsvImport');
     Route::resource('kendaraans', 'KendaraanController');
 
-    // Log Peminjaman
-    Route::resource('log-peminjamen', 'LogPeminjamanController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
-
     // Lantai
     Route::delete('lantais/destroy', 'LantaiController@massDestroy')->name('lantais.massDestroy');
     Route::post('lantais/parse-csv-import', 'LantaiController@parseCsvImport')->name('lantais.parseCsvImport');
@@ -88,6 +85,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Pinjam Kendaraan
     Route::delete('pinjam-kendaraans/destroy', 'PinjamKendaraanController@massDestroy')->name('pinjam-kendaraans.massDestroy');
     Route::resource('pinjam-kendaraans', 'PinjamKendaraanController');
+
+    // Log Pinjam Kendaraan
+    Route::resource('log-pinjam-kendaraans', 'LogPinjamKendaraanController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
 
     Route::get('system-calendar', 'SystemCalendarController@index')->name('systemCalendar');
 });
@@ -141,9 +141,6 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
     Route::post('kendaraans/ckmedia', 'KendaraanController@storeCKEditorImages')->name('kendaraans.storeCKEditorImages');
     Route::resource('kendaraans', 'KendaraanController');
 
-    // Log Peminjaman
-    Route::resource('log-peminjamen', 'LogPeminjamanController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
-
     // Lantai
     Route::delete('lantais/destroy', 'LantaiController@massDestroy')->name('lantais.massDestroy');
     Route::resource('lantais', 'LantaiController');
@@ -166,6 +163,9 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
     // Pinjam Kendaraan
     Route::delete('pinjam-kendaraans/destroy', 'PinjamKendaraanController@massDestroy')->name('pinjam-kendaraans.massDestroy');
     Route::resource('pinjam-kendaraans', 'PinjamKendaraanController');
+
+    // Log Pinjam Kendaraan
+    Route::resource('log-pinjam-kendaraans', 'LogPinjamKendaraanController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
 
     Route::get('frontend/profile', 'ProfileController@index')->name('profile.index');
     Route::post('frontend/profile', 'ProfileController@update')->name('profile.update');

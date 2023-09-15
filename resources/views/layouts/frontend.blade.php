@@ -117,14 +117,14 @@
                                             {{ trans('cruds.satpam.title') }}
                                         </a>
                                     @endcan
-                                    @can('unit_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.units.index') }}">
-                                            {{ trans('cruds.unit.title') }}
-                                        </a>
-                                    @endcan
                                     @can('sub_unit_access')
                                         <a class="dropdown-item ml-3" href="{{ route('frontend.sub-units.index') }}">
                                             {{ trans('cruds.subUnit.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('unit_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.units.index') }}">
+                                            {{ trans('cruds.unit.title') }}
                                         </a>
                                     @endcan
                                     @can('lantai_access')
@@ -137,6 +137,11 @@
                                             {{ trans('cruds.ruang.title') }}
                                         </a>
                                     @endcan
+                                    @can('pinjam_kendaraan_access')
+                                        <a class="dropdown-item" href="{{ route('frontend.pinjam-kendaraans.index') }}">
+                                            {{ trans('cruds.pinjamKendaraan.title') }}
+                                        </a>
+                                    @endcan
                                     @can('pinjam_ruang_access')
                                         <a class="dropdown-item" href="{{ route('frontend.pinjam-ruangs.index') }}">
                                             {{ trans('cruds.pinjamRuang.title') }}
@@ -147,9 +152,9 @@
                                             {{ trans('cruds.log.title') }}
                                         </a>
                                     @endcan
-                                    @can('log_peminjaman_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.log-peminjamen.index') }}">
-                                            {{ trans('cruds.logPeminjaman.title') }}
+                                    @can('log_pinjam_kendaraan_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.log-pinjam-kendaraans.index') }}">
+                                            {{ trans('cruds.logPinjamKendaraan.title') }}
                                         </a>
                                     @endcan
                                     @can('log_pinjam_ruangan_access')
@@ -160,11 +165,6 @@
                                     @can('user_alert_access')
                                         <a class="dropdown-item" href="{{ route('frontend.user-alerts.index') }}">
                                             {{ trans('cruds.userAlert.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('pinjam_kendaraan_access')
-                                        <a class="dropdown-item" href="{{ route('frontend.pinjam-kendaraans.index') }}">
-                                            {{ trans('cruds.pinjamKendaraan.title') }}
                                         </a>
                                     @endcan
 
