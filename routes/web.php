@@ -103,47 +103,11 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
 Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['auth']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
-    // Permissions
-    Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
-    Route::resource('permissions', 'PermissionsController');
-
-    // Roles
-    Route::delete('roles/destroy', 'RolesController@massDestroy')->name('roles.massDestroy');
-    Route::resource('roles', 'RolesController');
-
-    // Users
-    Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
-    Route::resource('users', 'UsersController');
-
-    // User Alerts
-    Route::delete('user-alerts/destroy', 'UserAlertsController@massDestroy')->name('user-alerts.massDestroy');
-    Route::resource('user-alerts', 'UserAlertsController', ['except' => ['edit', 'update']]);
-
-    // Unit
-    Route::delete('units/destroy', 'UnitController@massDestroy')->name('units.massDestroy');
-    Route::resource('units', 'UnitController');
-
-    // Sub Unit
-    Route::delete('sub-units/destroy', 'SubUnitController@massDestroy')->name('sub-units.massDestroy');
-    Route::resource('sub-units', 'SubUnitController');
-
-    // Satpam
-    Route::delete('satpams/destroy', 'SatpamController@massDestroy')->name('satpams.massDestroy');
-    Route::resource('satpams', 'SatpamController');
-
-    // Driver
-    Route::delete('drivers/destroy', 'DriverController@massDestroy')->name('drivers.massDestroy');
-    Route::resource('drivers', 'DriverController');
-
     // Kendaraan
     Route::delete('kendaraans/destroy', 'KendaraanController@massDestroy')->name('kendaraans.massDestroy');
     Route::post('kendaraans/media', 'KendaraanController@storeMedia')->name('kendaraans.storeMedia');
     Route::post('kendaraans/ckmedia', 'KendaraanController@storeCKEditorImages')->name('kendaraans.storeCKEditorImages');
     Route::resource('kendaraans', 'KendaraanController');
-
-    // Lantai
-    Route::delete('lantais/destroy', 'LantaiController@massDestroy')->name('lantais.massDestroy');
-    Route::resource('lantais', 'LantaiController');
 
     // Ruang
     Route::delete('ruangs/destroy', 'RuangController@massDestroy')->name('ruangs.massDestroy');
@@ -157,15 +121,9 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
     Route::post('pinjam-ruangs/ckmedia', 'PinjamRuangController@storeCKEditorImages')->name('pinjam-ruangs.storeCKEditorImages');
     Route::resource('pinjam-ruangs', 'PinjamRuangController');
 
-    // Log Pinjam Ruangan
-    Route::resource('log-pinjam-ruangans', 'LogPinjamRuanganController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
-
     // Pinjam Kendaraan
     Route::delete('pinjam-kendaraans/destroy', 'PinjamKendaraanController@massDestroy')->name('pinjam-kendaraans.massDestroy');
     Route::resource('pinjam-kendaraans', 'PinjamKendaraanController');
-
-    // Log Pinjam Kendaraan
-    Route::resource('log-pinjam-kendaraans', 'LogPinjamKendaraanController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
 
     Route::get('frontend/profile', 'ProfileController@index')->name('profile.index');
     Route::post('frontend/profile', 'ProfileController@update')->name('profile.update');

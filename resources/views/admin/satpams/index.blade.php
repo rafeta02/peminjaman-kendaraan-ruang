@@ -26,9 +26,6 @@
 
                     </th>
                     <th>
-                        {{ trans('cruds.satpam.fields.nip') }}
-                    </th>
-                    <th>
                         {{ trans('cruds.satpam.fields.nama') }}
                     </th>
                     <th>
@@ -49,37 +46,8 @@
 @section('scripts')
 @parent
 <script>
-    $(function () {
+$(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-@can('satpam_delete')
-  let deleteButtonTrans = '{{ trans('global.datatables.delete') }}';
-  let deleteButton = {
-    text: deleteButtonTrans,
-    url: "{{ route('admin.satpams.massDestroy') }}",
-    className: 'btn-danger',
-    action: function (e, dt, node, config) {
-      var ids = $.map(dt.rows({ selected: true }).data(), function (entry) {
-          return entry.id
-      });
-
-      if (ids.length === 0) {
-        alert('{{ trans('global.datatables.zero_selected') }}')
-
-        return
-      }
-
-      if (confirm('{{ trans('global.areYouSure') }}')) {
-        $.ajax({
-          headers: {'x-csrf-token': _token},
-          method: 'POST',
-          url: config.url,
-          data: { ids: ids, _method: 'DELETE' }})
-          .done(function () { location.reload() })
-      }
-    }
-  }
-  dtButtons.push(deleteButton)
-@endcan
 
   let dtOverrideGlobals = {
     buttons: dtButtons,
@@ -89,11 +57,10 @@
     aaSorting: [],
     ajax: "{{ route('admin.satpams.index') }}",
     columns: [
-      { data: 'placeholder', name: 'placeholder' },
-{ data: 'nip', name: 'nip' },
-{ data: 'nama', name: 'nama' },
-{ data: 'no_wa', name: 'no_wa' },
-{ data: 'actions', name: '{{ trans('global.actions') }}' }
+        { data: 'placeholder', name: 'placeholder' },
+        { data: 'nama', name: 'nama', class: 'text-center' },
+        { data: 'no_wa', name: 'no_wa', class: 'text-center' },
+        { data: 'actions', name: '{{ trans('global.actions') }}', class: 'text-center' }
     ],
     orderCellsTop: true,
     order: [[ 2, 'desc' ]],
@@ -104,7 +71,7 @@
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-  
+
 });
 
 </script>

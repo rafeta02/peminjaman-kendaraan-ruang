@@ -26,22 +26,14 @@
                                         {{ trans('cruds.pinjamRuang.fields.ruang') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.pinjamRuang.fields.time_start') }}
+                                        Waktu Peminjaman
                                     </th>
                                     <th>
-                                        {{ trans('cruds.pinjamRuang.fields.time_end') }}
+                                        {{ trans('cruds.pinjamRuang.fields.penggunaan') }}
                                     </th>
-                                    <th>
-                                        {{ trans('cruds.pinjamRuang.fields.no_hp') }}
-                                    </th>
+
                                     <th>
                                         {{ trans('cruds.pinjamRuang.fields.status') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.pinjamRuang.fields.surat_pengajuan') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.pinjamRuang.fields.borrowed_by') }}
                                     </th>
                                     <th>
                                         &nbsp;
@@ -58,23 +50,10 @@
                                             {{ $pinjamRuang->time_start ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $pinjamRuang->time_end ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $pinjamRuang->no_hp ?? '' }}
+                                            {{ $pinjamRuang->penggunaan ?? '' }}
                                         </td>
                                         <td>
                                             {{ App\Models\PinjamRuang::STATUS_SELECT[$pinjamRuang->status] ?? '' }}
-                                        </td>
-                                        <td>
-                                            @if($pinjamRuang->surat_pengajuan)
-                                                <a href="{{ $pinjamRuang->surat_pengajuan->getUrl() }}" target="_blank">
-                                                    {{ trans('global.view_file') }}
-                                                </a>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            {{ $pinjamRuang->borrowed_by->name ?? '' }}
                                         </td>
                                         <td>
                                             @can('pinjam_ruang_show')
@@ -156,7 +135,7 @@
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-  
+
 })
 
 </script>

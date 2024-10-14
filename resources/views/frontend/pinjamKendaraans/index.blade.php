@@ -26,40 +26,13 @@
                                         {{ trans('cruds.pinjamKendaraan.fields.kendaraan') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.kendaraan.fields.merk') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.kendaraan.fields.jenis') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.pinjamKendaraan.fields.date_start') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.pinjamKendaraan.fields.date_end') }}
+                                        Waktu Peminjaman
                                     </th>
                                     <th>
                                         {{ trans('cruds.pinjamKendaraan.fields.reason') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.pinjamKendaraan.fields.no_hp') }}
-                                    </th>
-                                    <th>
                                         {{ trans('cruds.pinjamKendaraan.fields.status') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.pinjamKendaraan.fields.borrowed_by') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.user.fields.email') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.pinjamKendaraan.fields.driver') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.driver.fields.no_wa') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.pinjamKendaraan.fields.date_return') }}
                                     </th>
                                     <th>
                                         &nbsp;
@@ -190,7 +163,7 @@
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-  
+
 })
 
 </script>

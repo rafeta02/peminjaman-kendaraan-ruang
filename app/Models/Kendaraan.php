@@ -71,7 +71,7 @@ class Kendaraan extends Model implements HasMedia
         $this->addMediaConversion('preview')->fit('crop', 120, 120);
     }
 
-    public function kendaraanPinjamKendaraans()
+    public function peminjaman()
     {
         return $this->hasMany(PinjamKendaraan::class, 'kendaraan_id', 'id');
     }
@@ -106,5 +106,23 @@ class Kendaraan extends Model implements HasMedia
         });
 
         return $files;
+    }
+
+    public function getNoPolAttribute()
+    {
+        preg_match_all("/[A-Z]+|\d+/", $this->attributes['plat_no'], $matches);
+        return implode('-', $matches[0]);
+    }
+
+    public function getNamaAttribute()
+    {
+        return Str::title($this->attributes['jenis']).' - '.Str::title($this->attributes['merk']);
+    }
+
+    public function getNoNamaAttribute()
+    {
+        preg_match_all("/[A-Z]+|\d+/", $this->attributes['plat_no'], $matches);
+        $no_po = implode('-', $matches[0]);
+        return $no_po. ' - '. Str::title($this->attributes['jenis']).' - '.Str::title($this->attributes['merk']);
     }
 }

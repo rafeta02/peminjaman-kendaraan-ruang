@@ -3,19 +3,6 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            @can('kendaraan_create')
-                <div style="margin-bottom: 10px;" class="row">
-                    <div class="col-lg-12">
-                        <a class="btn btn-success" href="{{ route('frontend.kendaraans.create') }}">
-                            {{ trans('global.add') }} {{ trans('cruds.kendaraan.title_singular') }}
-                        </a>
-                        <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
-                            {{ trans('global.app_csvImport') }}
-                        </button>
-                        @include('csvImport.modal', ['model' => 'Kendaraan', 'route' => 'admin.kendaraans.parseCsvImport'])
-                    </div>
-                </div>
-            @endcan
             <div class="card">
                 <div class="card-header">
                     {{ trans('cruds.kendaraan.title_singular') }} {{ trans('global.list') }}
@@ -26,23 +13,20 @@
                         <table class=" table table-bordered table-striped table-hover datatable datatable-Kendaraan">
                             <thead>
                                 <tr>
-                                    <th>
+                                    <th class="text-center">
                                         {{ trans('cruds.kendaraan.fields.plat_no') }}
                                     </th>
-                                    <th>
-                                        {{ trans('cruds.kendaraan.fields.merk') }}
-                                    </th>
-                                    <th>
+                                    <th class="text-center">
                                         {{ trans('cruds.kendaraan.fields.jenis') }}
                                     </th>
-                                    <th>
+                                    <th class="text-center">
+                                        {{ trans('cruds.kendaraan.fields.merk') }}
+                                    </th>
+                                    <th class="text-center">
                                         {{ trans('cruds.kendaraan.fields.operasional') }}
                                     </th>
-                                    <th>
+                                    <th class="text-center">
                                         {{ trans('cruds.kendaraan.fields.unit_kerja') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.subUnit.fields.slug') }}
                                     </th>
                                     <th>
                                         &nbsp;
@@ -52,47 +36,46 @@
                             <tbody>
                                 @foreach($kendaraans as $key => $kendaraan)
                                     <tr data-entry-id="{{ $kendaraan->id }}">
-                                        <td>
-                                            {{ $kendaraan->plat_no ?? '' }}
+                                        <td class="text-center">
+                                            {{ $kendaraan->no_pol ?? '' }}
+                                        </td>
+                                        <td class="text-center">
+                                            {{ App\Models\Kendaraan::JENIS_SELECT[$kendaraan->jenis] ?? '' }}
                                         </td>
                                         <td>
                                             {{ $kendaraan->merk ?? '' }}
                                         </td>
-                                        <td>
-                                            {{ App\Models\Kendaraan::JENIS_SELECT[$kendaraan->jenis] ?? '' }}
+                                        <td class="text-center">
+                                            {{ App\Models\Kendaraan::OPERASIONAL_SELECT[$kendaraan->operasional] ?? '' }}<br>
+                                            @if ($kendaraan->operasional == 'pimpinan')
+                                                <u>{{ $kendaraan->owned_by->name ?? '' }}</u><br>
+                                            @endif
+                                            ({{ $kendaraan->unit_kerja->nama ?? '' }})
                                         </td>
-                                        <td>
-                                            {{ App\Models\Kendaraan::OPERASIONAL_SELECT[$kendaraan->operasional] ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $kendaraan->unit_kerja->nama ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $kendaraan->unit_kerja->slug ?? '' }}
-                                        </td>
-                                        <td>
-                                            @can('kendaraan_show')
-                                                <a class="btn btn-xs btn-primary" href="{{ route('frontend.kendaraans.show', $kendaraan->id) }}">
-                                                    {{ trans('global.view') }}
-                                                </a>
-                                            @endcan
+                                        <td class="text-center">
+                                            @if ($kendaraan->peminjaman->count() > 0)
+                                                <ul>
+                                                    @foreach ($kendaraan->peminjaman as $peminjaman)
+                                                        <li>
+                                                            <span class="text-left badge badge-{{ App\Models\Pinjam::STATUS_BACKGROUND[$peminjaman->status] ?? '' }}"> Peminjaman oleh "{{ $peminjaman->borrowed_by->name ?? '' }}" <br> Untuk tanggal {{ $peminjaman->waktu_peminjaman }} <br> Status : {{ App\Models\Pinjam::STATUS_SELECT[$peminjaman->status] ?? '' }}</span>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
 
-                                            @can('kendaraan_edit')
-                                                <a class="btn btn-xs btn-info" href="{{ route('frontend.kendaraans.edit', $kendaraan->id) }}">
-                                                    {{ trans('global.edit') }}
-                                                </a>
-                                            @endcan
-
-                                            @can('kendaraan_delete')
-                                                <form action="{{ route('frontend.kendaraans.destroy', $kendaraan->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                    <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                                                </form>
-                                            @endcan
-
+                                                {{-- <span class="text-left badge badge-{{ App\Models\Pinjam::STATUS_BACKGROUND[$kendaraan->peminjaman->status] ?? '' }}"> Peminjaman oleh "{{ $kendaraan->peminjaman->borrowed_by->name }}"<br> Status : {{ App\Models\Pinjam::STATUS_SELECT[$kendaraan->peminjaman->status] ?? '' }}</span> --}}
+                                            @else
+                                                <span class="badge badge-success">Tersedia</span>
+                                            @endif
                                         </td>
-
+                                        <td>
+                                            @if(count($kendaraan->foto) > 0)
+                                                <button class="btn btn-sm btn-info btn-block btn-view-image" data-id="{{ $kendaraan->id }}">View Image</button>
+                                            @endif
+                                            <button class="btn btn-sm btn-primary btn-block btn-detail" data-id="{{ $kendaraan->id }}">Detail</button>
+                                            <a class="btn btn-sm btn-block btn-success btn-block" href="{{ route('frontend.pinjam-kendaraans.create', ['kendaraan' => $kendaraan->id]) }}">
+                                                Ajukan
+                                            </a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -108,37 +91,8 @@
 @section('scripts')
 @parent
 <script>
-    $(function () {
+$(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-@can('kendaraan_delete')
-  let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
-  let deleteButton = {
-    text: deleteButtonTrans,
-    url: "{{ route('frontend.kendaraans.massDestroy') }}",
-    className: 'btn-danger',
-    action: function (e, dt, node, config) {
-      var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
-          return $(entry).data('entry-id')
-      });
-
-      if (ids.length === 0) {
-        alert('{{ trans('global.datatables.zero_selected') }}')
-
-        return
-      }
-
-      if (confirm('{{ trans('global.areYouSure') }}')) {
-        $.ajax({
-          headers: {'x-csrf-token': _token},
-          method: 'POST',
-          url: config.url,
-          data: { ids: ids, _method: 'DELETE' }})
-          .done(function () { location.reload() })
-      }
-    }
-  }
-  dtButtons.push(deleteButton)
-@endcan
 
   $.extend(true, $.fn.dataTable.defaults, {
     orderCellsTop: true,
@@ -150,7 +104,7 @@
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-  
+
 })
 
 </script>

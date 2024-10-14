@@ -63,10 +63,6 @@ class KendaraanController extends Controller
                 return $row->unit_kerja ? $row->unit_kerja->nama : '';
             });
 
-            $table->editColumn('unit_kerja.slug', function ($row) {
-                return $row->unit_kerja ? (is_string($row->unit_kerja) ? $row->unit_kerja : $row->unit_kerja->slug) : '';
-            });
-
             $table->rawColumns(['actions', 'placeholder', 'unit_kerja']);
 
             return $table->make(true);

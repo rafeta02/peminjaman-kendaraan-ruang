@@ -41,9 +41,6 @@
                         {{ trans('cruds.kendaraan.fields.unit_kerja') }}
                     </th>
                     <th>
-                        {{ trans('cruds.subUnit.fields.slug') }}
-                    </th>
-                    <th>
                         &nbsp;
                     </th>
                 </tr>
@@ -58,37 +55,8 @@
 @section('scripts')
 @parent
 <script>
-    $(function () {
+$(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-@can('kendaraan_delete')
-  let deleteButtonTrans = '{{ trans('global.datatables.delete') }}';
-  let deleteButton = {
-    text: deleteButtonTrans,
-    url: "{{ route('admin.kendaraans.massDestroy') }}",
-    className: 'btn-danger',
-    action: function (e, dt, node, config) {
-      var ids = $.map(dt.rows({ selected: true }).data(), function (entry) {
-          return entry.id
-      });
-
-      if (ids.length === 0) {
-        alert('{{ trans('global.datatables.zero_selected') }}')
-
-        return
-      }
-
-      if (confirm('{{ trans('global.areYouSure') }}')) {
-        $.ajax({
-          headers: {'x-csrf-token': _token},
-          method: 'POST',
-          url: config.url,
-          data: { ids: ids, _method: 'DELETE' }})
-          .done(function () { location.reload() })
-      }
-    }
-  }
-  dtButtons.push(deleteButton)
-@endcan
 
   let dtOverrideGlobals = {
     buttons: dtButtons,
@@ -98,14 +66,13 @@
     aaSorting: [],
     ajax: "{{ route('admin.kendaraans.index') }}",
     columns: [
-      { data: 'placeholder', name: 'placeholder' },
-{ data: 'plat_no', name: 'plat_no' },
-{ data: 'merk', name: 'merk' },
-{ data: 'jenis', name: 'jenis' },
-{ data: 'operasional', name: 'operasional' },
-{ data: 'unit_kerja_nama', name: 'unit_kerja.nama' },
-{ data: 'unit_kerja.slug', name: 'unit_kerja.slug' },
-{ data: 'actions', name: '{{ trans('global.actions') }}' }
+        { data: 'placeholder', name: 'placeholder' },
+        { data: 'plat_no', name: 'plat_no', class: 'text-center' },
+        { data: 'merk', name: 'merk', class: 'text-center' },
+        { data: 'jenis', name: 'jenis', class: 'text-center' },
+        { data: 'operasional', name: 'operasional', class: 'text-center' },
+        { data: 'unit_kerja_nama', name: 'unit_kerja.nama' },
+        { data: 'actions', name: '{{ trans('global.actions') }}', class: 'text-center' }
     ],
     orderCellsTop: true,
     order: [[ 1, 'desc' ]],
@@ -116,7 +83,7 @@
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-  
+
 });
 
 </script>

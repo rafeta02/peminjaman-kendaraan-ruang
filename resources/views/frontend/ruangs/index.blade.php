@@ -3,19 +3,6 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            @can('ruang_create')
-                <div style="margin-bottom: 10px;" class="row">
-                    <div class="col-lg-12">
-                        <a class="btn btn-success" href="{{ route('frontend.ruangs.create') }}">
-                            {{ trans('global.add') }} {{ trans('cruds.ruang.title_singular') }}
-                        </a>
-                        <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
-                            {{ trans('global.app_csvImport') }}
-                        </button>
-                        @include('csvImport.modal', ['model' => 'Ruang', 'route' => 'admin.ruangs.parseCsvImport'])
-                    </div>
-                </div>
-            @endcan
             <div class="card">
                 <div class="card-header">
                     {{ trans('cruds.ruang.title_singular') }} {{ trans('global.list') }}
@@ -96,37 +83,8 @@
 @section('scripts')
 @parent
 <script>
-    $(function () {
+$(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-@can('ruang_delete')
-  let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
-  let deleteButton = {
-    text: deleteButtonTrans,
-    url: "{{ route('frontend.ruangs.massDestroy') }}",
-    className: 'btn-danger',
-    action: function (e, dt, node, config) {
-      var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
-          return $(entry).data('entry-id')
-      });
-
-      if (ids.length === 0) {
-        alert('{{ trans('global.datatables.zero_selected') }}')
-
-        return
-      }
-
-      if (confirm('{{ trans('global.areYouSure') }}')) {
-        $.ajax({
-          headers: {'x-csrf-token': _token},
-          method: 'POST',
-          url: config.url,
-          data: { ids: ids, _method: 'DELETE' }})
-          .done(function () { location.reload() })
-      }
-    }
-  }
-  dtButtons.push(deleteButton)
-@endcan
 
   $.extend(true, $.fn.dataTable.defaults, {
     orderCellsTop: true,
@@ -138,7 +96,7 @@
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-  
+
 })
 
 </script>

@@ -52,6 +52,27 @@
                                     {{ __('Dashboard') }}
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('frontend.kendaraans.index') }}">
+                                    {{ trans('cruds.kendaraan.title') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('frontend.ruangs.index') }}">
+                                    {{ trans('cruds.ruang.title') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('frontend.pinjam-kendaraans.index') }}">
+                                    {{ trans('cruds.pinjamKendaraan.title') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('frontend.pinjam-ruangs.index') }}">
+                                    {{ trans('cruds.pinjamRuang.title') }}
+                                </a>
+                            </li>
+
                         @endguest
                     </ul>
 
@@ -77,94 +98,24 @@
 
                                     <a class="dropdown-item" href="{{ route('frontend.profile.index') }}">{{ __('My profile') }}</a>
 
-                                    @can('user_management_access')
-                                        <a class="dropdown-item disabled" href="#">
-                                            {{ trans('cruds.userManagement.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('permission_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.permissions.index') }}">
-                                            {{ trans('cruds.permission.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('role_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.roles.index') }}">
-                                            {{ trans('cruds.role.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('user_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.users.index') }}">
-                                            {{ trans('cruds.user.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('master_access')
-                                        <a class="dropdown-item disabled" href="#">
-                                            {{ trans('cruds.master.title') }}
-                                        </a>
-                                    @endcan
                                     @can('kendaraan_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.kendaraans.index') }}">
+                                        <a class="dropdown-item ml-2" href="{{ route('frontend.kendaraans.index') }}">
                                             {{ trans('cruds.kendaraan.title') }}
                                         </a>
                                     @endcan
-                                    @can('driver_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.drivers.index') }}">
-                                            {{ trans('cruds.driver.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('satpam_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.satpams.index') }}">
-                                            {{ trans('cruds.satpam.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('sub_unit_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.sub-units.index') }}">
-                                            {{ trans('cruds.subUnit.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('unit_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.units.index') }}">
-                                            {{ trans('cruds.unit.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('lantai_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.lantais.index') }}">
-                                            {{ trans('cruds.lantai.title') }}
-                                        </a>
-                                    @endcan
                                     @can('ruang_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.ruangs.index') }}">
+                                        <a class="dropdown-item ml-2" href="{{ route('frontend.ruangs.index') }}">
                                             {{ trans('cruds.ruang.title') }}
                                         </a>
                                     @endcan
                                     @can('pinjam_kendaraan_access')
-                                        <a class="dropdown-item" href="{{ route('frontend.pinjam-kendaraans.index') }}">
+                                        <a class="dropdown-item ml-2" href="{{ route('frontend.pinjam-kendaraans.index') }}">
                                             {{ trans('cruds.pinjamKendaraan.title') }}
                                         </a>
                                     @endcan
                                     @can('pinjam_ruang_access')
-                                        <a class="dropdown-item" href="{{ route('frontend.pinjam-ruangs.index') }}">
+                                        <a class="dropdown-item ml-2" href="{{ route('frontend.pinjam-ruangs.index') }}">
                                             {{ trans('cruds.pinjamRuang.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('log_access')
-                                        <a class="dropdown-item disabled" href="#">
-                                            {{ trans('cruds.log.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('log_pinjam_kendaraan_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.log-pinjam-kendaraans.index') }}">
-                                            {{ trans('cruds.logPinjamKendaraan.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('log_pinjam_ruangan_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.log-pinjam-ruangans.index') }}">
-                                            {{ trans('cruds.logPinjamRuangan.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('user_alert_access')
-                                        <a class="dropdown-item" href="{{ route('frontend.user-alerts.index') }}">
-                                            {{ trans('cruds.userAlert.title') }}
                                         </a>
                                     @endcan
 
